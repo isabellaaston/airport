@@ -23,7 +23,6 @@ describe("Airport", () => {
         expect(() => new Airport()).toThrowError("missing name")
     })
     test("airport has a plane that has people with bags", () => {
-        
         const bag1 = new Bag(20)
         const passenger = new Person.Passenger("Pam")
         passenger.addBag(bag1)
@@ -37,5 +36,31 @@ describe("Airport", () => {
         plane.boardPlane(crew)
         expect(airport.planes[0].passengers[0].bags[0].weight).toBe(20)
         expect(airport.planes[0].crew[0].bags[0].weight).toBe(5)
+    })
+    // test("airports have a country", (cb) => {
+    //     const BCN = new Airport("BCN")
+    //     BCN.getInfo((err, info) => {
+    //         console.log(info)
+    //         expect(err).toBeNull()
+    //         expect(info.country).toEqual("ES")
+    //         cb()
+    //     })
+    // })
+
+    test("airports have a city", async () => {
+        const BCN = new Airport("BCN")
+        const airport = await BCN.getInfo()
+        expect(airport.city).toEqual("Barcelona")
+    })
+
+    test("airports have a city", () => {
+        const IBZ = new Airport("IBZ")
+        return IBZ.getInfo()
+        .then(info => {
+            expect(info.city).toEqual("Ibiza")
+        })
+        .catch(err => {
+            expect(err).toBeNull()
+        })
     })
 })

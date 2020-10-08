@@ -41,6 +41,6 @@ describe("Plane", () => {
     //     const plane = new Plane("MAD", 4, 25)
     //     plane.boardPlane(crew1)
     //     plane.boardPlane(crew2)
-    //     expect(plane.crew.crossCheck).toBe(true)
+    //     expect(plane.crew.forEach(plane.crossCheck)).toBe(true)
     // })
 })
