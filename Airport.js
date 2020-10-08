@@ -1,17 +1,22 @@
 class Airport {
-    constructor(city, capacity) {
-        if(!city || !capacity) throw new Error("missing city or capacity")
-        this.city = city
-        this.capacity = capacity
+    static airports = [];
+    constructor(name) {
+        if(!name) throw new Error("missing name")
+        this.name = name
         this.planes = []
+        this.constructor.airports.push(this)
     }
+
     landPlane(plane){
-        if(this.planes.length < this.capacity) {
             this.planes.push(plane)
-        }
-        else {
-            throw new Error("Airport has no landing space")
-        }
+    }
+
+    planeTakeOff(plane, destination){
+        let runway = this.planes.indexOf(plane)
+        this.planes.splice(runway, 1)
+        plane.destination = destination
+        const airport = this.constructor.airports.find( (airport) => {return airport.name===destination})
+        airport.landPlane(plane)
     }
 }
 

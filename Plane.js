@@ -1,10 +1,21 @@
 class Plane {
-    constructor(capacity) {
-        this.capacity = capacity
+    constructor(crewCapacity, passengerCapacity, destination) {
+        this.crewCapacity = crewCapacity
+        this.passengerCapacity = passengerCapacity
+        this.destination = destination
+        this.crew = []
         this.passengers = []
     }
+    staffPlane(crew){
+        if(this.crew.length < this.crewCapacity){
+        this.crew.push(crew)
+        }
+        else {
+            throw new Error("plane is full")
+        }
+    }
     boardPlane(passenger){
-        if(this.passengers.length < this.capacity) {
+        if(this.passengers.length < this.passengerCapacity) {
             this.passengers.push(passenger)
         }
         else {
