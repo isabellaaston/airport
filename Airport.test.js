@@ -37,15 +37,14 @@ describe("Airport", () => {
         expect(airport.planes[0].passengers[0].bags[0].weight).toBe(20)
         expect(airport.planes[0].crew[0].bags[0].weight).toBe(5)
     })
-    // test("airports have a country", (cb) => {
-    //     const BCN = new Airport("BCN")
-    //     BCN.getInfo((err, info) => {
-    //         console.log(info)
-    //         expect(err).toBeNull()
-    //         expect(info.country).toEqual("ES")
-    //         cb()
-    //     })
-    // })
+    test("airports have a country", (done) => {
+        const BCN = new Airport("BCN")
+            function callback (info) {
+                expect(info.country).toEqual("ES")
+                done()
+            }
+            BCN.getInfoCallback(callback)
+    })
 
     test("airports have a city", async () => {
         const BCN = new Airport("BCN")

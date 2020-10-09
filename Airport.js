@@ -23,15 +23,13 @@ class Airport {
         airport.landPlane(plane)
     }
 
-    // getInfo(cb){
-    //     fs.readFile('./airports.json', (err, buffer)=> {
-    //         let data = cb(err, JSON.parse(String(buffer)))
-    //         // const data = (JSON.parse(String(buffer)))
-    //         // console.log(data)
-    //         const airport = data.find(metaData => metaData.iata===this.name)
-    //         return airport
-    //     })
-    // }
+    getInfoCallback(callback){
+        fs.readFile('./airports.json', (err, buffer)=> {
+            const data = JSON.parse(String(buffer))
+            const airport = data.find(metaData => metaData.iata==this.name)
+            callback(airport)
+        })
+    }
 
     getInfo(cb){
         return new Promise((res, rej) => {
